@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark header w-100">
+    <a href="#" class="navbar-brand">My ToDo</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navMenu" aria-controls="navMenu"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav mr-auto">            
+            <li class="nav-item" *ngFor="let item of menu">
+                <a href="#" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" routerLink="{{item.path}}">
+                    <i [ngClass]="item.icon"></i> {{item.name}}
+                    <span class="sr-only">(atual)</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,19 @@
+{
+    "menu": [
+        {
+            "name": "home",
+            "icon": "fas fa-home",
+            "path": "home"
+        },
+        {
+            "name": "settings",
+            "icon": "fas fa-cog",
+            "path": "settings"
+        },
+        {
+            "name": "login",
+            "icon": "fas fa-user",
+            "path": "login"
+        }
+    ]
+}
