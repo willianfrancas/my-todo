@@ -10,13 +10,17 @@ import { UserModel } from './user.model';
 export class LoginService {
   constructor(private http: HttpClient) { }
 
-  signIn(): Observable<UserModel> {
+  signIn(dataUser): Observable<UserModel> {
     // return this.angularFirestore.collection('user-todo').snapshotChanges();
-    return this.http.get<UserModel>(`${environment.TODO_SERVER}/user`);
+    return this.http.post<UserModel>(`${environment.TODO_SERVER}/login`, dataUser);
   }
 
   signUp(dataUser): Observable<UserModel> {
-    return this.http.post<UserModel>(`${environment.TODO_SERVER}/user`, dataUser);
+    return this.http.post<UserModel>(`${environment.TODO_SERVER}/signup`, dataUser);
     // return this.angularFirestore.collection('user-todo').add(dataUser);
+  }
+
+  resetPassword(dataUser): Observable<UserModel> {
+    return this.http.post<UserModel>(`${environment.TODO_SERVER}/reset/password`, dataUser);
   }
 }
