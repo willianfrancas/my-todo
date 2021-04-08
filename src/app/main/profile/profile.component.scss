@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&display=swap");
+@import "../../../assets/scss/variables.scss";
+
+* {
+  font-size: 0.8rem;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.profile {
+  background-color: burlywood;
+  border-radius: 8px;
+  padding: 0.8rem;
+}
