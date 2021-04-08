@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { MainModule } from './main/main.module';
 
@@ -11,13 +12,13 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
 import { CharactersComponent } from './core/connections/characters/characters.component';
-import { environment } from 'src/environments/environment';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { AuthModule } from './auth/auth.module';
+import { ProfileComponent } from './main/profile/profile.component';
 
-// import { AngularFireModule } from '@angular/fire';
-// import { AngularFireDatabaseModule } from '@angular/fire/database';
-// import { AngularFirestoreModule } from '@angular/fire/firestore';
-// import { AngularFireStorageModule } from '@angular/fire/storage';
-
+// function tokenGetter() {
+//   return localStorage.getItem("access_token");
+// }
 
 @NgModule({
   declarations: [
@@ -26,22 +27,25 @@ import { environment } from 'src/environments/environment';
     FooterComponent,
     MainComponent,
     CharactersComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     MainModule,
-    // AngularFireModule.initializeApp(environment.firebase),
-    // AngularFirestoreModule,
-    // AngularFireDatabaseModule,
-    // AngularFireStorageModule,
+    AuthModule.forRoot(),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
   ,
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

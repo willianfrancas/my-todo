@@ -1,35 +1,33 @@
-<form #formS="ngForm" (ngSubmit)="onSubmit()">
+<div class="login mt-2">
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="account">
-        <input checked id="signin" name="action" type="radio" value="signIn" [(ngModel)]="action">
-        <label for="signin">Sign in</label>
 
-        <input id="signup" name="action" type="radio" value="signUp" [(ngModel)]="action">
-        <label for="signup">Sign up</label>
+      <input id="signin" name="action" type="radio" value="signIn" formControlName="action" #signIn (click)="listenAction($event)">
+      <label for="signin">Sign in</label>
 
-        <input id="reset" name="action" type="radio" value="reset" [(ngModel)]="action">
-        <label for="reset">Reset</label>
+      <input id="signup" name="action" type="radio" value="signUp" formControlName="action" (click)="listenAction($event)">
+      <label for="signup">Sign up</label>
 
-        <div id="wrapper">
-            <div id="arrow"></div>
-            <input id="email" placeholder="email" type="text" [(ngModel)]="email" name="email">
-            <input id="pass" placeholder="password" type="password" [(ngModel)]="password" name="password">
-            <input id="respass" placeholder="confirm password" type="password">
-        </div>
+      <input id="reset" name="action" type="radio" value="reset" formControlName="action" (click)="listenAction($event)">
+      <label for="reset">Reset</label>
 
-        <button type="submit" [value]="action">
-            <span>
-                <a>reset password</a>
-                <br>
-                <a>sign in</a>
-                <br>
-                <a>sign up</a>
-            </span>
-        </button>
+      <div id="wrapper">
+        <div id="arrow"></div>
+        <input id="email" placeholder="email" type="text" formControlName="email" name="email" autocomplete>
+        <input *ngIf="action === 'signIn' || action === 'signUp'" id="pass" placeholder="password" type="password" formControlName="password" name="password" autocomplete>
+        <input *ngIf="action === 'signUp'" id="respass" placeholder="confirm password" type="password" autocomplete>
+      </div>
+
+      <button type="submit" [value]="action">
+        <span>
+          <a>reset password</a>
+          <br>
+          <a>sign in</a>
+          <br>
+          <a>sign up</a>
+        </span>
+      </button>
     </div>
-
-    <div>
-        {{action}}
-        {{email}}
-        {{password}}
-    </div>
-</form>
+  </form>
+</div>

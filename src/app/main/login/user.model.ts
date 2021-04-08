@@ -5,5 +5,6 @@ export interface UserModel {
     password: string,
     email: string,
     phone: string,
+    token?: string,
     _id: string,
 }
