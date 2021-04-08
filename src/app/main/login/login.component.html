@@ -14,7 +14,7 @@
 
       <div id="wrapper">
         <div id="arrow"></div>
-        <input id="email" placeholder="email" type="text" formControlName="email" name="email" autocomplete>
+        <input id="email" placeholder="email" type="email" formControlName="email" name="email" autocomplete>
         <input *ngIf="action === 'signIn' || action === 'signUp'" id="pass" placeholder="password" type="password" formControlName="password" name="password" autocomplete>
         <input *ngIf="action === 'signUp'" id="respass" placeholder="confirm password" type="password" autocomplete>
       </div>
