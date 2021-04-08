@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginService } from './login.service';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 import { UserModel } from './user.model';
 
 @Component({
@@ -9,28 +11,34 @@ import { UserModel } from './user.model';
 })
 export class LoginComponent implements OnInit {
 
+  @ViewChild('signIn', { static: false }) signIn: ElementRef<HTMLInputElement>
   action = 'signIn';
+  loading = false;
+  loginForm: FormGroup = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    action: [''],
+  });
 
-  email: string;
   userName: string;
-  password: string;
-
   user: UserModel[]
 
-  constructor(private loginService: LoginService) { }
+  constructor(private authService: AuthService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
 
   }
 
+  ngAfterViewInit(): void {
+    this.signIn.nativeElement.checked = true;
+  }
+
   onSubmit() {
-    const dataUser = {
-      email: this.email,
-      password: this.password
-    }
+    this.loading = true;
+    const credentials = this.loginForm.value;
     switch (this.action) {
       case 'signUp':
-        this.loginService.signUp(dataUser)
+        this.authService.register(credentials)
           .subscribe((res) => {
             console.log('Criado com sucesso =>', res);
           }, (error) => {
@@ -38,7 +46,7 @@ export class LoginComponent implements OnInit {
           });
         break;
       case 'reset':
-        this.loginService.resetPassword(dataUser)
+        this.authService.resetPassword()
           .subscribe((res) => {
             console.log('reset password =>', res);
           }, (error) => {
@@ -46,20 +54,21 @@ export class LoginComponent implements OnInit {
           });
         break;
       default:
-        this.loginService.signIn(dataUser)
-          .subscribe((res) => {
-            console.log('Logado com sucesso =>', res);
-          }, (error) => {
+        this.authService.login(credentials)
+          .subscribe(resUser => {
+            console.log('Logado com sucesso =>', resUser);
+            this.router.navigateByUrl('/home');
+            this.loading = false;
+          }, error => {
             console.log(`Erro => ${error}`);
           });
         break;
     }
   }
 
-  signUp() {
+  listenAction(event) {
+    this.action = event.target.value;
   }
 
-  reset() {
 
-  }
 }
