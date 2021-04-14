@@ -15,6 +15,8 @@ import { CharactersComponent } from './core/connections/characters/characters.co
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { AuthModule } from './auth/auth.module';
 import { ProfileComponent } from './main/profile/profile.component';
+import { FeedbackAlertComponent } from './feedback-alert/feedback-alert.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 // function tokenGetter() {
 //   return localStorage.getItem("access_token");
@@ -28,6 +30,7 @@ import { ProfileComponent } from './main/profile/profile.component';
     MainComponent,
     CharactersComponent,
     ProfileComponent,
+    FeedbackAlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ import { ProfileComponent } from './main/profile/profile.component';
     AppRoutingModule,
     MainModule,
     AuthModule.forRoot(),
+    NoopAnimationsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
   ,

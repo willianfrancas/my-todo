@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of } from "rxjs";
-import { catchError, map, tap } from "rxjs/operators";
+import { catchError, delay, map, tap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
-import { UserModel } from "../main/login/user.model";
+import { UserModel } from "./login/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class AuthService {
           localStorage.setItem('token', user.token);
           this.subjLoggedIn$.next(true)
           this.subjUser$.next(user);
-        }))
+        }));
   }
 
   isAuthenticated(): Observable<boolean> {
