@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&display=swap");
+@import "../../../assets/scss/variables.scss";
+
+* {
+  font-size: 0.8rem;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+
+  form {
+    background-color: $secondary;
+    border-radius: 8px;
+    flex-grow: 1;
+    padding: 2em;
+
+    @media (min-width: 1024px) {
+      max-width: 50%;
+    }
+
+    #wrapper,
+    label,
+    #arrow,
+    button span {
+      transition: all 0.5s cubic-bezier(0.6, 0, 0.4, 1);
+    }
+    #wrapper {
+      margin-top: .8rem;
+    }
+    .account {
+      input {
+        &[type="radio"] {
+          display: none;
+          &:checked + label {
+            opacity: 1;
+          }
+        }
+        &[type="text"],
+        &[type="email"],
+        &[type="password"] {
+          background: #fff;
+          border: none;
+          border-radius: 8px;
+          height: 72px;
+          width: 99.5%;
+          margin-bottom: 10px;
+          opacity: 1;
+          text-indent: 20px;
+          transition: all 0.2s ease-in-out;
+        }
+      }
+      label {
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 800;
+        opacity: 0.5;
+        text-transform: uppercase;
+        &:hover {
+          transition: all 0.3s cubic-bezier(0.6, 0, 0.4, 1);
+          opacity: 1;
+        }
+        &[for="signin"] {
+          margin-right: 20px;
+        }
+        &[for="reset"] {
+          float: right;
+        }
+      }
+      button {
+        background: $primary;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        cursor: pointer;
+        height: 72px;
+        width: 100%;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.6, 0, 0.4, 1);
+        margin-top: 12px;
+        span {
+          display: block;
+          line-height: 72px;
+          position: relative;
+          top: -2px;
+          transform: translate3d(0, 0, 0);
+          a {
+            color: #fff;
+          }
+        }
+        &:hover {
+          background: $dark;
+        }
+        input {
+          background: none;
+          border: none;
+          color: #fff;
+        }
+        &:disabled {
+          background-color: crimson;
+          cursor: not-allowed;
+        }
+      }
+
+      #arrow {
+        height: 0;
+        width: 0;
+        border-bottom: 10px solid #e8f0fe;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        position: relative;
+        left: 32px;
+      }
+    }
+    .feedback {
+      display: flex;
+      justify-content: center;
+
+      .feedback-server {
+        width: 100%;
+        color: $bright;
+        border-radius: 8px;
+        padding: 0.5em;
+        position: relative;
+        background-color: $warm;
+        animation: feedback 2s;
+        .message {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+#wrapper {
+  overflow: hidden;
+}
+#signin:checked ~ #wrapper {
+  height: 220px;
+}
+#signin:checked ~ #wrapper #arrow {
+  left: 8px;
+}
+#signin:checked ~ button span {
+  transform: translate3d(0, -72px, 0);
+}
+#signup:checked ~ #wrapper {
+  height: 280px;
+}
+#signup:checked ~ #wrapper #arrow {
+  left: 94px;
+}
+#signup:checked ~ button span {
+  transform: translate3d(0, -144px, 0);
+}
+#reset:checked ~ #wrapper {
+  height: 110px;
+}
+#reset:checked ~ #wrapper #arrow {
+  left: 90%;
+  @media (min-width: 768px) {
+    left: 95%;
+  }
+  @media (min-width: 1024px) {
+    left: 93%;
+  }
+}
+#reset:checked ~ button span {
+  transform: translate3d(0, 0, 0);
+}
+
+:focus {
+  outline: none;
+}
+::-webkit-input-placeholder {
+  color: $bright;
+}
+::-moz-placeholder {
+  color: $bright;
+}
+:-moz-placeholder {
+  color: $bright;
+}
+::-ms-input-placeholder {
+  color: $bright;
+}
+
+.has-error {
+  margin-top: -.8rem;
+  margin-left: .6rem;
+  color: crimson;
+  span {
+    font-size: .6rem;
+  }
+}
+
+@keyframes feedback {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 5;
+  }
+  100% {
+    opacity: 9;
+  }
+}
