@@ -1,0 +1,61 @@
+<div class="login mt-2">
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="account">
+
+      <input id="signin" name="action" type="radio" value="signIn" formControlName="action" #signIn
+        (click)="listenAction($event)">
+      <label for="signin">Sign in</label>
+
+      <input id="signup" name="action" type="radio" value="signUp" formControlName="action"
+        (click)="listenAction($event)">
+      <label for="signup">Sign up</label>
+
+      <input id="reset" name="action" type="radio" value="reset" formControlName="action"
+        (click)="listenAction($event)">
+      <label for="reset">Reset</label>
+
+      <div id="wrapper">
+        <div id="arrow"></div>
+        <input id="email" placeholder="email" type="email" formControlName="email" name="email" autocomplete>
+        <div class="has-error" *ngIf="f.email?.invalid && (f.email?.touched || !f.email?.pristine)">
+          <span>informe um email válido</span>
+        </div>
+
+        <input *ngIf="action === 'signIn' || action === 'signUp'" id="password" placeholder="password" type="password"
+          formControlName="password" name="password" autocomplete>
+        <div class="has-error" *ngIf="f.password?.errors?.minlength?.requiredLength">
+          <span>senha deve conter ao menos 6 caracteres</span>
+        </div>
+
+        <input *ngIf="action === 'signUp'" id="respass" placeholder="confirm password" type="password"
+          formControlName="passwordConfirmation" autocomplete>
+        <div class="has-error"
+          *ngIf="action === 'signUp' && f.passwordConfirmation.touched && f.passwordConfirmation.invalid">
+          <span *ngIf="action === 'signUp' && f.passwordConfirmation.errors.required">confirmação de senha é
+            obrigatório</span>
+          <span *ngIf="action === 'signUp' && f.passwordConfirmation.errors.passwordValidator">senhas não
+            conferem</span>
+        </div>
+      </div>
+      <div class="feedback">
+        <div [ngClass]="feedback ? 'feedback-server' : ''">
+          <p class="message">{{feedback}}</p>
+        </div>
+        <div class="spinner-border text-success" *ngIf="loading">
+          <div class="sr-only">carregando...</div>
+        </div>
+      </div>
+
+      <button type="submit" [value]="action" [disabled]="submitted || !loginForm.valid">
+        <span>
+          <a>reset password</a>
+          <br>
+          <a>sign in</a>
+          <br>
+          <a>sign up</a>
+        </span>
+      </button>
+    </div>
+  </form>
+</div>
