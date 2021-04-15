@@ -17,13 +17,15 @@
 
       <div id="wrapper">
         <div id="arrow"></div>
-        <input id="email" placeholder="email" type="email" formControlName="email" name="email" autocomplete>
+
+
+        <input id="email" placeholder="email" type="email" formControlName="email" name="email" autocomplete #email>
         <div class="has-error" *ngIf="f.email?.invalid && (f.email?.touched || !f.email?.pristine)">
           <span>informe um email válido</span>
         </div>
 
-        <input *ngIf="action === 'signIn' || action === 'signUp'" id="password" placeholder="password" type="password"
-          formControlName="password" name="password" autocomplete>
+        <input *ngIf="['signIn','signUp'].includes(action)" id="password" placeholder="password" type="password"
+          #password formControlName="password" name="password" autocomplete>
         <div class="has-error" *ngIf="f.password?.errors?.minlength?.requiredLength">
           <span>senha deve conter ao menos 6 caracteres</span>
         </div>
@@ -47,7 +49,7 @@
         </div>
       </div>
 
-      <button type="submit" [value]="action" [disabled]="submitted || !loginForm.valid">
+      <button type="submit" [value]="action" [disabled]="!loginForm.valid">
         <span>
           <a>reset password</a>
           <br>

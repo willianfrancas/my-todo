@@ -4,14 +4,16 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth.interceptor';
 import { LoginComponent } from './login/login.component';
-import { MatInputModule } from '@angular/material/input'
+import { SharedModule } from '../shared/shared.module';
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [
+    LoginComponent,
+  ],
   imports: [
     CommonModule,
-    MatInputModule,
     AuthRoutingModule,
     ReactiveFormsModule,
+    SharedModule,
   ]
 })
 export class AuthModule {

@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-import { MyErrorStateMatcher } from './my-error-state-matcher';
 import { PasswordValidator } from './password-validator';
 import { UserModel } from './user.model';
 
@@ -13,7 +12,6 @@ import { UserModel } from './user.model';
 })
 
 export class LoginComponent implements OnInit {
-  matcher = new MyErrorStateMatcher();
 
   @ViewChild('signIn', { static: false }) signIn: ElementRef<HTMLInputElement>
   loading = false;
@@ -21,15 +19,13 @@ export class LoginComponent implements OnInit {
   userName: string;
   user: UserModel[];
   feedback: string = '';
-  requiredMatching = false;
   action = 'signIn';
-
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     passwordConfirmation: [''],
-    action: [''],
+    action: ['signIn'],
   },
     { validators: PasswordValidator('password', 'passwordConfirmation') }
   );
@@ -47,7 +43,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.feedback = '';
     this.submitted = true;
-    if (this.loginForm.invalid) return;
+
     const credentials = this.loginForm.value;
     switch (this.action) {
       case 'signUp':
@@ -63,10 +59,10 @@ export class LoginComponent implements OnInit {
       case 'reset':
         this.authService.resetPassword()
           .subscribe((res) => {
-            console.log('reset password =>', res);
+            // console.log('reset password =>', res);
             this.loading = false;
           }, (error) => {
-            console.log(`Erro => ${error}`);
+            // console.log(`Erro => ${error}`);
             this.feedback = error.error.message;
             this.loading = false;
           });
@@ -74,11 +70,11 @@ export class LoginComponent implements OnInit {
       default:
         this.authService.login(credentials)
           .subscribe(resUser => {
-            console.log('Logado com sucesso =>', resUser);
+            // console.log('Logado com sucesso =>', resUser);
             this.router.navigateByUrl('/home');
             this.loading = false;
           }, error => {
-            console.table(error.error.message);
+            // console.table(error.error.message);
             this.feedback = error.error.message;
             this.loading = false;
           });
@@ -95,23 +91,28 @@ export class LoginComponent implements OnInit {
     this.feedback = '';
     this.loginForm.controls['passwordConfirmation'].clearValidators();
     if (this.action === 'signUp') {
-      this.requiredMatching = true;
       this.loginForm.controls['passwordConfirmation'].setValidators([Validators.required, Validators.minLength(6)]);
     }
     this.loginForm.controls['passwordConfirmation'].updateValueAndValidity();
-    this.loginForm.valueChanges.subscribe(val => {
-      console.log('form', this.loginForm);
-    });
   }
 
-  matchingPasswords(group: FormGroup) {
-    if (group) {
-      if (group.controls['password'].value === group.controls['passwordConfirmation'].value) {
-        return null;
-      }
-    }
-    return { matching: false };
-  }
+  // matchingPasswords(group: FormGroup) {
+  //   if (group) {
+  //     if (group.controls['password'].value === group.controls['passwordConfirmation'].value) {
+  //       return null;
+  //     }
+  //   }
+  //   return { matching: false };
+  // }
 
+  // isValidTouched(field) {
+  //   return !field.valid && field.touched;
+  // }
 
+  // applyCssError(field) {
+  //   return {
+  //     'has-error': this.isValidTouched(field),
+  //     'has-feedback': this.isValidTouched(field),
+  //   }
+  // }
 }

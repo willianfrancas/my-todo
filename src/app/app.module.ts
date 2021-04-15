@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { JwtModule } from '@auth0/angular-jwt';
@@ -15,13 +15,9 @@ import { CharactersComponent } from './core/connections/characters/characters.co
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { AuthModule } from './auth/auth.module';
 import { ProfileComponent } from './main/profile/profile.component';
-import { FeedbackAlertComponent } from './feedback-alert/feedback-alert.component';
+import { FeedbackAlertComponent } from './shared/feedback-alert/feedback-alert.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
-// function tokenGetter() {
-//   return localStorage.getItem("access_token");
-// }
-
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +36,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     MainModule,
     AuthModule.forRoot(),
     NoopAnimationsModule,
+    SharedModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
   ,
