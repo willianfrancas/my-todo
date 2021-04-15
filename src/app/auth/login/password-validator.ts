@@ -4,7 +4,7 @@ export function PasswordValidator(controlName: string, matchingControlName: stri
   return (formGroup: FormGroup) => {
     const control = formGroup.controls[controlName];
     const matchingControl = formGroup.controls[matchingControlName];
-
+    if (['signIn', 'reset'].includes(formGroup.controls['action'].value)) return matchingControl.setErrors(null);
     if (matchingControl.errors && !matchingControl.errors.passwordValidator) {
       return;
     }
