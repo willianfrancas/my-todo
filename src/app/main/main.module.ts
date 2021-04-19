@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
