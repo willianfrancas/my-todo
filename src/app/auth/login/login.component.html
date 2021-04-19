@@ -11,22 +11,22 @@
         (click)="listenAction($event)">
       <label for="signup">Sign up</label>
 
-      <input id="reset" name="action" type="radio" value="reset" formControlName="action"
+      <input *ngIf="reset" id="reset" name="action" type="radio" value="reset" formControlName="action"
         (click)="listenAction($event)">
-      <label for="reset">Reset</label>
+      <label for="reset" *ngIf="reset">Reset</label>
 
       <div id="wrapper">
         <div id="arrow"></div>
-
-
         <input id="email" placeholder="email" type="email" formControlName="email" name="email" autocomplete #email>
         <div class="has-error" *ngIf="f.email?.invalid && (f.email?.touched || !f.email?.pristine)">
+          <i class="fas fa-exclamation-triangle"></i>
           <span>informe um email válido</span>
         </div>
 
         <input *ngIf="['signIn','signUp'].includes(action)" id="password" placeholder="password" type="password"
           #password formControlName="password" name="password" autocomplete>
-        <div class="has-error" *ngIf="f.password?.errors?.minlength?.requiredLength">
+        <div class="has-error" *ngIf="action !== 'reset' && f.password?.errors?.minlength?.requiredLength">
+          <i class="fas fa-exclamation-triangle"></i>
           <span>senha deve conter ao menos 6 caracteres</span>
         </div>
 
@@ -34,9 +34,13 @@
           formControlName="passwordConfirmation" autocomplete>
         <div class="has-error"
           *ngIf="action === 'signUp' && f.passwordConfirmation.touched && f.passwordConfirmation.invalid">
-          <span *ngIf="action === 'signUp' && f.passwordConfirmation.errors.required">confirmação de senha é
+          <i class="fas fa-exclamation-triangle"></i>
+          <span *ngIf="f.passwordConfirmation.errors.required">confirmação de senha é
             obrigatório</span>
-          <span *ngIf="action === 'signUp' && f.passwordConfirmation.errors.passwordValidator">senhas não
+          <span *ngIf="f.passwordConfirmation.errors.minlength?.requiredLength">confirmação de
+            senha deve conter ao
+            menos 6 caracteres</span>
+          <span *ngIf="f.passwordConfirmation.errors.passwordValidator">senhas não
             conferem</span>
         </div>
       </div>
