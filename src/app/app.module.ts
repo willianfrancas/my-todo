@@ -3,7 +3,6 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-// import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { MainModule } from './main/main.module';
 
@@ -14,10 +13,10 @@ import { MainComponent } from './main/main.component';
 import { CharactersComponent } from './core/connections/characters/characters.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { AuthModule } from './auth/auth.module';
-import { ProfileComponent } from './main/profile/profile.component';
 import { FeedbackAlertComponent } from './shared/feedback-alert/feedback-alert.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +24,6 @@ import { SharedModule } from './shared/shared.module';
     FooterComponent,
     MainComponent,
     CharactersComponent,
-    ProfileComponent,
     FeedbackAlertComponent,
   ],
   imports: [

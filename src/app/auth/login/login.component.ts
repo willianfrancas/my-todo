@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { PasswordValidator } from './password-validator';
@@ -12,10 +12,12 @@ import { UserModel } from './user.model';
 })
 
 export class LoginComponent implements OnInit {
-
   @ViewChild('signIn', { static: false }) signIn: ElementRef<HTMLInputElement>
+
   loading = false;
   submitted = false;
+  reset = false;
+  
   userName: string;
   user: UserModel[];
   feedback: string = '';
