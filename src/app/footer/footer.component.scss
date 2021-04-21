@@ -1,7 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&display=swap");
+@import "../../assets/scss/variables.scss";
+
 .footer {
-    color: #fff;    
-    height: 10vh;
-    position: fixed;
-    bottom: 0;
-    width: 100vw;
+  height: 5vh;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  
+  a {
+    color: $bright;
+    &:hover {
+      color: $secondary;
+    }
+  }
 }
