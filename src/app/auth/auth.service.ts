@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of } from "rxjs";
-import { catchError, delay, map, tap } from "rxjs/operators";
+import { catchError, map, tap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
-import { UserModel } from "./login/user.model";
+import { UserModel } from "../shared/model/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,7 @@ export class AuthService {
       .pipe(
         tap((user: UserModel) => {
           localStorage.setItem('token', user.token);
+          localStorage.setItem('user', JSON.stringify(user));
           this.subjLoggedIn$.next(true)
           this.subjUser$.next(user);
         }));
