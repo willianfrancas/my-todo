@@ -14,8 +14,15 @@ body {
 .alert {
   border: 0.1rem solid transparent;
   border-radius: 8px;
-  font-size: .8rem;
+  font-size: 0.8rem;
   margin-bottom: -1rem;
   margin-top: 0.2rem;
   padding: 0.1rem 0.5rem;
+}
+
+.has-error,
+.has-feedback {
+  input {
+    border: 3px solid red;
+  }
 }

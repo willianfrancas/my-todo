@@ -17,7 +17,7 @@
 
   label {
     font-family: Raleway, sans-serif;
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
   input {
     &[type="text"],
@@ -25,6 +25,7 @@
     &[type="password"],
     &[type="number"] {
       background: $bright;
+      border: none;
       border-radius: 8px;
       height: 52px;
       width: 100%;
@@ -35,7 +36,10 @@
     }
   }
   button {
-    // background: $primary;
+    background-color: $warm;
+    &.btn-dark {
+      background: $primary;
+    }
     border: none;
     border-radius: 8px;
     color: $bright;
@@ -66,12 +70,6 @@
     &:disabled {
       background-color: crimson;
       cursor: not-allowed;
-    }
-  }
-  .has-error,
-  .has-feedback {
-    input {
-      border: 3px solid red;
     }
   }
 }
