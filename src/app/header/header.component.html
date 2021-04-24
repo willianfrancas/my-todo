@@ -10,23 +10,23 @@
       <div *ngFor="let item of menu">
         <li class="nav-item menu"
           *ngIf="(!['logout', 'login'].includes(item.name) && (authenticated$ | async) && (user$ | async))">
-          <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" routerLink="{{item.path}}">
+          <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" [routerLink]="['home/'+item.path]" routerLinkActive="active">
             <i [ngClass]="item.icon"></i> {{item.name}}
             <span class="sr-only">(atual)</span>
           </a>
         </li>
 
-        <li class="nav-item login"
+        <li class="nav-item menu login"
           *ngIf="(['login'].includes(item.name) && !(authenticated$ | async) && !(user$ | async))">
-          <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" routerLink="{{item.path}}">
+          <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" [routerLink]="['/'+item.path]">
             <i [ngClass]="item.icon"></i> {{item.name}}
             <span class="sr-only">(atual)</span>
           </a>
         </li>
 
-        <li class="nav-item logout"
+        <li class="nav-item menu logout"
           *ngIf="(['logout'].includes(item.name) && (authenticated$ | async) && (user$ | async))">
-          <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" (click)="logout()">
+          <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" (click)="logout()" routerLinkActive="active">
             <i [ngClass]="item.icon"></i> {{item.name}}
             <span class="sr-only">(atual)</span>
           </a>

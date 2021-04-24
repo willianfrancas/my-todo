@@ -30,7 +30,7 @@
       transition: all 0.5s cubic-bezier(0.6, 0, 0.4, 1);
     }
     #wrapper {
-      margin-top: .8rem;
+      margin-top: 0.8rem;
     }
     .account {
       input {
@@ -39,19 +39,6 @@
           &:checked + label {
             opacity: 1;
           }
-        }
-        &[type="text"],
-        &[type="email"],
-        &[type="password"] {
-          background: #fff;
-          border: none;
-          border-radius: 8px;
-          height: 72px;
-          width: 100%;
-          margin-bottom: 10px;
-          opacity: 1;
-          text-indent: 20px;
-          transition: all 0.2s ease-in-out;
         }
       }
       label {
@@ -173,31 +160,15 @@
   transform: translate3d(0, 0, 0);
 }
 
-:focus {
-  outline: none;
-}
-::-webkit-input-placeholder {
-  color: $bright;
-}
-::-moz-placeholder {
-  color: $bright;
-}
-:-moz-placeholder {
-  color: $bright;
-}
-::-ms-input-placeholder {
-  color: $bright;
-}
-
 .has-error {
-  margin-top: -.7rem;
-  margin-left: .6rem;
+  margin-top: -0.7rem;
+  margin-left: 0.6rem;
   color: crimson;
   span {
-    font-size: .7rem;
+    font-size: 0.7rem;
   }
   i {
-    margin-right: .4rem;
+    margin-right: 0.4rem;
   }
 }
 

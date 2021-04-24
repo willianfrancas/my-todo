@@ -3,7 +3,7 @@
     {
       "name": "home",
       "icon": "fas fa-home",
-      "path": "home"
+      "path": "menu"
     },
     {
       "name": "perfil",

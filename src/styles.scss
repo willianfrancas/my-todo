@@ -1,12 +1,13 @@
 @import "assets/scss/variables.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background: $primary;
-}
-html,
-body {
-  height: 100%;
-}
-body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
@@ -24,5 +25,42 @@ body {
 .has-feedback {
   input {
     border: 3px solid red;
+  }
+}
+
+input {
+  &[type="text"],
+  &[type="email"],
+  &[type="password"] {
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+    height: 72px;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 1;
+    text-indent: 20px;
+    transition: all 0.2s ease-in-out;
+    font-size: 1.4rem;
+    font-family: Raleway, sans-serif;
+
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: $placeholder-color;
+    }
+    &::-webkit-input-placeholder {
+      color: $placeholder-color;
+    }
+    &::-moz-placeholder {
+      color: $placeholder-color;
+    }
+    &:-moz-placeholder {
+      color: $placeholder-color;
+    }
+    &::-ms-input-placeholder {
+      color: $placeholder-color;
+    }
   }
 }

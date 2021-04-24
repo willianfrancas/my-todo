@@ -1,11 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&display=swap");
 @import "../../../assets/scss/variables.scss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 .title {
   font-family: Raleway, sans-serif;
   color: $bright;
@@ -13,27 +8,11 @@
 .profile {
   background-color: #ccf381;
   border-radius: 8px;
-  padding: 0.8rem;
+  padding: 1.2rem;
 
   label {
     font-family: Raleway, sans-serif;
     font-size: 0.8rem;
-  }
-  input {
-    &[type="text"],
-    &[type="email"],
-    &[type="password"],
-    &[type="number"] {
-      background: $bright;
-      border: none;
-      border-radius: 8px;
-      height: 52px;
-      width: 100%;
-      opacity: 1;
-      text-indent: 20px;
-      transition: all 0.2s ease-in-out;
-      font-size: 1.4rem;
-    }
   }
   button {
     background-color: $warm;
@@ -58,9 +37,6 @@
       a {
         color: $bright;
       }
-    }
-    &:hover {
-      // background: $dark;
     }
     input {
       background: none;
