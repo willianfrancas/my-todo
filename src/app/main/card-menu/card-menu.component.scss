@@ -6,14 +6,19 @@
   color: $bright;
 }
 .card-menu {
-  width: 18rem;
-}
-.card-item {
-  margin: .3rem 0;
-}
-.card-header {
-  span {
-    margin-left: 2rem;
-    color: black;
+  background-color: #ccf381;
+  border-radius: 8px;
+  padding: 0.8rem;
+  .card {
+    width: 12rem;
+  }
+  .card-item {
+    margin: 0.3rem 0;
+  }
+  .card-header {
+    span {
+      margin-left: 2rem;
+      color: black;
+    }
   }
 }
