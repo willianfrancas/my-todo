@@ -9,7 +9,7 @@
         <div class="row flex-column">
 
           <div class="row">
-            <div class="col-sm-12 col-md-6 col-xl-6 p-2" [ngClass]="applyCssError(f.firstname)">
+            <div class="col-sm-12 col-md-6 col-xl-6" [ngClass]="applyCssError(f.firstname)">
               <label class="form-label" for="firstname">nome</label>
               <input class="form-control form-control-sm" type="text" id="firstname" formControlName="firstname"
                 maxlength="16">
@@ -17,7 +17,7 @@
               </control-field-error>
             </div>
 
-            <div class="col-sm-12 col-md-6 col-xl-6 p-2">
+            <div class="col-sm-12 col-md-6 col-xl-6">
               <label class="form-label" for="lastname">sobrenome</label>
               <input class="form-control form-control-sm" type="text" id="lastname" formControlName="lastname" maxlength="32">
               <control-field-error [showError]="isValid(f.lastname)" msgError="sobrenome é obrigatório">
@@ -26,7 +26,7 @@
           </div>
 
           <div class="row">
-            <div class="col-sm-12 col-md-6 col-xl-6 p-2">
+            <div class="col-sm-12 col-md-6 col-xl-6">
               <label class="form-label" for="username">nome de usuário</label>
               <input class="form-control form-control-sm" type="text" id="username" formControlName="username" maxlength="18">
               <control-field-error [showError]="isValid(f.username)" msgError="nome de usuário é obrigatório">
@@ -35,36 +35,34 @@
           </div>
 
           <div class="row">
-            <div class="col-sm-12 col-md-6 col-xl-6 p-2">
+            <div class="col-sm-12 col-md-6 col-xl-6">
               <label class="form-label" for="password">senha</label>
-              <input class="form-control form-control-sm" type="password" id="password" formControlName="password">
+              <input class="form-control form-control-sm" type="password" id="password" formControlName="password" placeholder="password">
             </div>
 
-            <div class="col-sm-12 col-md-6 col-xl-6 p-2">
+            <div class="col-sm-12 col-md-6 col-xl-6">
               <label class="form-label" for="confirm_password">confirmação de senha</label>
-              <input class="form-control form-control-sm" type="password" id="confirm_password"
+              <input class="form-control form-control-sm" type="password" id="confirm_password" placeholder="confirm password"
                 formControlName="passwordConfirmation" #passwordConfirmation>
-              <control-field-error *ngIf="passwordConfirmation.value" [showError]="isValid(f.passwordConfirmation)"
-                msgError="confirmação de senha é obrigatório"></control-field-error>
             </div>
           </div>
 
           <div class="row">
-            <div class="col-sm-12 col-md-6 col-xl-8 p-2">
+            <div class="col-sm-12 col-md-6 col-xl-8">
               <label class="form-label" for="email">e-mail</label>
               <input class="form-control form-control-sm" type="email" id="email" formControlName="email">
               <control-field-error [showError]="isValid(f.email)" msgError="email é obrigatório"></control-field-error>
             </div>
 
-            <div class="col-sm-12 col-md-6 col-xl-4 p-2">
+            <div class="col-sm-12 col-md-6 col-xl-4">
               <label class="form-label" for="phone">celular</label>
               <input class="form-control form-control-sm" type="text" id="phone" formControlName="mobilephone">
             </div>
           </div>
 
           <div class="d-flex flex-row">
-            <button type="button" class="btn btn-secondary m-2" (click)="cancel($event)">Cancel</button>
-            <button class="btn btn-dark m-2" [disabled]="!formProfile.valid">Save</button>
+            <button type="button" class="btn btn-secondary" (click)="cancel($event)">Cancel</button>
+            <button class="btn btn-dark ml-2" [disabled]="!formProfile.valid">Save</button>
           </div>
 
         </div>
