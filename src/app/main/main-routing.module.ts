@@ -3,9 +3,17 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router'
 import { AuthGuard } from '../auth/auth-guard.service';
 import { ProfileComponent } from './profile/profile.component';
+import { MainComponent } from './main.component';
+import { CardMenuComponent } from './card-menu/card-menu.component';
 
 const routes: Routes = [
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  {
+    path: 'home', component: MainComponent, canActivate: [AuthGuard],
+    children: [
+      { path: 'menu', component: CardMenuComponent, canActivate: [AuthGuard] },
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+    ]
+  }
 ]
 
 @NgModule({
