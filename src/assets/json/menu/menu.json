@@ -3,12 +3,22 @@
     {
       "name": "home",
       "icon": "fas fa-home",
+      "path": "home"
+    },
+    {
+      "name": "menu",
+      "icon": "fab fa-buromobelexperte",
       "path": "menu"
     },
     {
       "name": "perfil",
       "icon": "fas fa-address-card",
       "path": "profile"
+    },
+    {
+      "name": "list",
+      "icon": "fas fa-list-ul",
+      "path": "list"
     },
     {
       "name": "login",
