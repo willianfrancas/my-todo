@@ -35,14 +35,14 @@ input {
     background: #fff;
     border: none;
     border-radius: 8px;
+    font-size: .9rem;
+    font-family: Raleway, sans-serif;
     height: 72px;
-    width: 100%;
     margin-bottom: 10px;
     opacity: 1;
     text-indent: 20px;
     transition: all 0.2s ease-in-out;
-    font-size: 1.4rem;
-    font-family: Raleway, sans-serif;
+    width: 100%;
 
     &:focus {
       outline: none;

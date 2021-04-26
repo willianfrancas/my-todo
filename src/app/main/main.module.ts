@@ -16,7 +16,6 @@ import { MainComponent } from './main.component';
     MainComponent,
   ],
   imports: [
-    BrowserModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
