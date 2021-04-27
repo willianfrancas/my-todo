@@ -1,0 +1,29 @@
+<div class="title">
+  <h1>List</h1>
+</div>
+<hr>
+
+<div class="body-list">
+  <div>
+    <form action="" class="form-group" [formGroup]="formList">
+      <div class="container">
+        <div class="add-item">
+          <div class="col-sm-9 p-0">
+            <input type="text" class="form-control form-control-sm" formControlName="description"
+            placeholder="descrição do item">
+          </div>
+          <div class="col-sm-3 p-0">
+            <input type="number" class="form-control form-control-sm" formControlName="price"
+           placeholder="preço" min="0" max="99999999">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="new-item">
+  <button class="btn btn-primary">
+    <i class="fas fa-plus"></i>
+  </button>
+</div>
