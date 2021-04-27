@@ -7,7 +7,36 @@
 }
 
 .body-list {
-  background-color: #ccf381;
+  background-color: $secondary;
   border-radius: 8px;
-  padding: 1.2rem;
+  padding: 1.2rem 0;
+
+  .add-item {
+    display: flex;
+    padding: 0;
+  }
+}
+
+.new-item {
+  position: absolute;
+  bottom: 60px;
+  right: 25px;
+  button {
+    border-radius: 100%;
+    background-color: $secondary;
+    i {
+      color: $primary;
+    }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  input {
+    &[type="text"] {
+      width: 14em;
+    }
+    &[type="number"] {
+      width: 8em;
+    }
+  }
 }
