@@ -5,20 +5,38 @@
 
 <div class="body-list">
   <div>
-    <form action="" class="form-group" [formGroup]="formList">
+    <form action="" class="form-group" [formGroup]="formList" (ngSubmit)="onSubmit()">
       <div class="container">
-        <div class="add-item">
+        <div class="row add-item p-2">
           <div class="col-sm-9 p-0">
             <input type="text" class="form-control form-control-sm" formControlName="description"
-            placeholder="descrição do item">
+              placeholder="descrição do item">
           </div>
           <div class="col-sm-3 p-0">
-            <input type="number" class="form-control form-control-sm" formControlName="price"
-           placeholder="preço" min="0" max="99999999">
+            <input type="number" class="form-control form-control-sm" formControlName="price" placeholder="preço"
+              min="0" max="99999999">
           </div>
         </div>
       </div>
+      <div class="row p-2">
+        <div class="col">
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="!formList.valid">Salvar</button>
+        </div>
+      </div>
     </form>
+  </div>
+
+  <div class="container my-list">
+    <div class="row p-2">
+      <div class="col">
+        <ul>
+          <li class="item-list" *ngFor="let item of itemList">
+            <i class="fas fa-check-square"></i>
+            {{item.description}} - {{item.price}}
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 
