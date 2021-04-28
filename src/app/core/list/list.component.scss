@@ -10,33 +10,36 @@
   background-color: $secondary;
   border-radius: 8px;
   padding: 1.2rem 0;
+  position: relative;
+  
+  .my-list {
+    overflow: auto;
+    max-height: 30rem;
+  }
 
   .add-item {
     display: flex;
-    padding: 0;
+  }
+
+  .my-list {
+    border: 2px solid $primary;
+    border-radius: 8px;
+    
+    .item-list {
+      list-style: none;
+    }
   }
 }
 
 .new-item {
-  position: absolute;
-  bottom: 60px;
-  right: 25px;
+  position: fixed;
+  bottom: 2.5rem;
+  right: 1rem;
   button {
     border-radius: 100%;
     background-color: $secondary;
     i {
       color: $primary;
-    }
-  }
-}
-
-@media only screen and (max-width: 375px) {
-  input {
-    &[type="text"] {
-      width: 14em;
-    }
-    &[type="number"] {
-      width: 8em;
     }
   }
 }
