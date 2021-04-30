@@ -27,17 +27,27 @@
   </div>
 
   <div class="container my-list">
-    <div class="row p-2">
-      <div class="col">
-        <ul>
-          <li class="item-list" *ngFor="let item of itemList">
-            <i class="fas fa-check-square"></i>
-            {{item.description}} - {{item.price}}
-          </li>
-        </ul>
+    <div *ngFor="let item of itemList; let i=index;">
+      <div class="row item">
+        <div class="col-sm-2 " (click)="changeStatus(i,done)">
+          <input type="checkbox" [checked]="item.done" #done>
+          <i class="icon-item" [ngClass]="{'fas fa-check-square': done.checked, 'far fa-square': !done.checked}"></i>
+        </div>
+        <div class="col-sm-6 ">
+          <p class="text text-uppercase">{{item.description}}</p>
+        </div>
+        <div class="col-sm-2 ">
+          <p class="price">{{item.price}}</p>
+        </div>
+        <div class="col-sm-2  actions-items">
+          <i class="far fa-edit"></i>
+          <i class="far fa-trash-alt"></i>
+        </div>
+        <hr>
       </div>
     </div>
   </div>
+
 </div>
 
 <div class="new-item">
