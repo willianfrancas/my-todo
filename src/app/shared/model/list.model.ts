@@ -1,4 +1,5 @@
 export interface ListModel {
-  description: string,
-  price: string,
+  done: boolean;
+  description: string;
+  price: string;
 }
