@@ -28,7 +28,7 @@
       transition: all 0.5s cubic-bezier(0.6, 0, 0.4, 1);
     }
     #wrapper {
-      margin-top: .8rem;
+      margin-top: 0.8rem;
     }
     .account {
       input {
@@ -37,19 +37,6 @@
           &:checked + label {
             opacity: 1;
           }
-        }
-        &[type="text"],
-        &[type="email"],
-        &[type="password"] {
-          background: #fff;
-          border: none;
-          border-radius: 8px;
-          height: 72px;
-          width: 100%;
-          margin-bottom: 10px;
-          opacity: 1;
-          text-indent: 20px;
-          transition: all 0.2s ease-in-out;
         }
       }
       label {

@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&display=swap");
+@import "../../../assets/scss/variables.scss";
+
+.title {
+  font-family: Raleway, sans-serif;
+  color: $bright;
+}
+
+.body-list {
+  background-color: $secondary;
+  border-radius: 8px;
+  padding: 1.2rem 0;
+  position: relative;
+
+  .my-list {
+    overflow: auto;
+    max-height: 30rem;
+  }
+
+  .add-item {
+    display: flex;
+  }
+
+  .my-list {
+    border: 2px solid $primary;
+    border-radius: 8px;
+    padding-top: 1.2rem;
+
+    .item {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+
+      .text {
+        text-align: start;
+      }
+      .price {
+        text-align: end;
+      }
+      .actions-items {
+        display: flex;
+        justify-content: space-evenly;
+      }
+      i {
+        cursor: pointer;
+      }
+      hr {
+        color: red;
+        width: 100%;
+        height: 2px;
+        margin: 0;
+      }
+      input[type="checkbox"] {
+        display: none;
+      }
+    }
+  }
+}
+
+.new-item {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 1rem;
+  button {
+    border-radius: 100%;
+    background-color: $secondary;
+    i {
+      color: $primary;
+    }
+  }
+}
