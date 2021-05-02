@@ -12,13 +12,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.alert {
-  border: 0.1rem solid transparent;
-  border-radius: 8px;
+label,
+p {
+  font-family: Raleway, sans-serif;
   font-size: 0.8rem;
-  margin-bottom: -1rem;
-  margin-top: 0.2rem;
-  padding: 0.1rem 0.5rem;
 }
 
 .input--control {
@@ -55,8 +52,8 @@ body {
     }
   }
 
-  .input__feedback {
-    margin-top: .2rem;
+  .input--feedback {
+    margin-top: 0.2rem;
     height: 1.2rem;
   }
   .has-error {
@@ -75,7 +72,7 @@ body {
   display: flex;
   justify-content: center;
 
-  .feedback-server {
+  &__message {
     width: 100%;
     color: $bright;
     border-radius: 8px;
@@ -88,6 +85,19 @@ body {
       text-align: center;
     }
   }
+
+  &__loading {
+    color: $primary;
+  }
+}
+
+.alert {
+  border: 0.1rem solid transparent;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  margin-bottom: -1rem;
+  margin-top: 0.2rem;
+  padding: 0.1rem 0.5rem;
 }
 
 @keyframes feedback {
@@ -99,5 +109,11 @@ body {
   }
   100% {
     opacity: 9;
+  }
+  50% {
+    opacity: 5;
+  }
+  0% {
+    opacity: 0;
   }
 }
