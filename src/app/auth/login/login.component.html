@@ -11,44 +11,57 @@
         (click)="listenAction($event)">
       <label for="signup">Sign up</label>
 
-      <input *ngIf="reset" id="reset" name="action" type="radio" value="reset" formControlName="action"
+      <input id="reset" name="action" type="radio" value="reset" formControlName="action"
         (click)="listenAction($event)">
-      <label for="reset" *ngIf="reset">Reset</label>
+      <label for="reset">Reset</label>
 
       <div id="wrapper">
         <div id="arrow"></div>
-        <input id="email" placeholder="email" type="email" formControlName="email" name="email" autocomplete #email>
-        <div class="has-error" *ngIf="f.email?.invalid && (f.email?.touched || !f.email?.pristine)">
-          <i class="fas fa-exclamation-triangle"></i>
-          <span>informe um email válido</span>
+
+        <div class="input--control">
+          <input id="email" placeholder="email" type="email" formControlName="email" name="email" autocomplete #email>
+          <div class="input--feedback" [ngClass]="{'has-error': !f.email.valid}">
+            <div *ngIf="f.email?.invalid && (f.email?.touched || !f.email?.pristine)">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span>informe um email válido</span>
+            </div>
+          </div>
         </div>
 
-        <input *ngIf="['signIn','signUp'].includes(action)" id="password" placeholder="password" type="password"
-          #password formControlName="password" name="password" autocomplete>
-        <div class="has-error" *ngIf="action !== 'reset' && f.password?.errors?.minlength?.requiredLength">
-          <i class="fas fa-exclamation-triangle"></i>
-          <span>senha deve conter ao menos 6 caracteres</span>
+        <div class="input--control">
+          <input *ngIf="['signIn','signUp'].includes(action)" id="password" placeholder="password" type="password"
+            #password formControlName="password" name="password" autocomplete>
+          <div class="input--feedback" [ngClass]="{'has-error' : !f.password.valid}">
+            <div *ngIf="action !== 'reset' && f.password?.errors?.minlength?.requiredLength">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span>senha deve conter ao menos 6 caracteres</span>
+            </div>
+          </div>
         </div>
 
-        <input *ngIf="action === 'signUp'" id="respass" placeholder="confirm password" type="password"
-          formControlName="passwordConfirmation" autocomplete>
-        <div class="has-error"
-          *ngIf="action === 'signUp' && f.passwordConfirmation.touched && f.passwordConfirmation.invalid">
-          <i class="fas fa-exclamation-triangle"></i>
-          <span *ngIf="f.passwordConfirmation.errors.required">confirmação de senha é
-            obrigatório</span>
-          <span *ngIf="f.passwordConfirmation.errors.minlength?.requiredLength">confirmação de
-            senha deve conter ao
-            menos 6 caracteres</span>
-          <span *ngIf="f.passwordConfirmation.errors.passwordValidator">senhas não
-            conferem</span>
+        <div class="input--control">
+          <input *ngIf="action === 'signUp'" id="respass" placeholder="confirm password" type="password"
+            formControlName="passwordConfirmation" autocomplete>
+          <div class="input--feedback" [ngClass]="{'has-error' : !f.passwordConfirmation?.valid}">
+            <div *ngIf="action === 'signUp' && f.passwordConfirmation.touched && f.passwordConfirmation.invalid">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span *ngIf="f.passwordConfirmation.errors.required">confirmação de senha é
+                obrigatório</span>
+              <span *ngIf="f.passwordConfirmation.errors.minlength?.requiredLength">confirmação de
+                senha deve conter ao
+                menos 6 caracteres</span>
+              <span *ngIf="f.passwordConfirmation.errors.passwordValidator">senhas não
+                conferem</span>
+            </div>
+          </div>
         </div>
       </div>
+
       <div class="feedback">
-        <div [ngClass]="feedback ? 'feedback-server' : ''">
+        <div [ngClass]="feedback ? 'feedback__message' : ''">
           <p class="message">{{feedback}}</p>
         </div>
-        <div class="spinner-border text-success" *ngIf="loading">
+        <div class="spinner-border feedback__loading" *ngIf="loading">
           <div class="sr-only">carregando...</div>
         </div>
       </div>
