@@ -1,6 +1,98 @@
 @import 'assets/scss/variables.scss';
 body {
-    background: $primary;
+  background: $primary;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.alert {
+  border: 0.1rem solid transparent;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  margin-bottom: -1rem;
+  margin-top: 0.2rem;
+  padding: 0.1rem 0.5rem;
+}
+
+.input--control {
+  position: relative;
+  input {
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: Raleway, sans-serif;
+    height: 40px;
+    opacity: 1;
+    text-indent: 0.8rem;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: $placeholder-color;
+    }
+    &::-webkit-input-placeholder {
+      color: $placeholder-color;
+    }
+    &::-moz-placeholder {
+      color: $placeholder-color;
+    }
+    &:-moz-placeholder {
+      color: $placeholder-color;
+    }
+    &::-ms-input-placeholder {
+      color: $placeholder-color;
+    }
+  }
+
+  .input__feedback {
+    margin-top: .2rem;
+    height: 1.2rem;
+  }
+  .has-error {
+    margin-left: 0.6rem;
+    color: crimson;
+    span {
+      font-size: 0.7rem;
+    }
+    i {
+      margin-right: 0.4rem;
+    }
+  }
+}
+
+.feedback {
+  display: flex;
+  justify-content: center;
+
+  .feedback-server {
+    width: 100%;
+    color: $bright;
+    border-radius: 8px;
+    padding: 0.4em;
+    position: relative;
+    background-color: $warm;
+    animation: feedback 2s;
+    margin: 1.2rem;
+    .message {
+      text-align: center;
+    }
+  }
+}
+
+@keyframes feedback {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 5;
+  }
+  100% {
+    opacity: 9;
+  }
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
