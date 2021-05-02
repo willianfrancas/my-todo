@@ -9,6 +9,9 @@ import { ProfileService } from '../profile.service';
 })
 export class ProfileComponent implements OnInit {
 
+  loading = false;
+  feedback: string = '';
+
   formProfile = this.fb.group({
     firstname: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
     lastname: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
@@ -30,26 +33,35 @@ export class ProfileComponent implements OnInit {
   }
 
   loadProfile() {
+    this.loading = true;
     this.profileService.loadProfileUser()
       .subscribe(userProfile => {
         this.formProfile.patchValue(userProfile);
         this.profileService.saveLocal(userProfile);
+        this.loading = false;
       }, error => {
+        this.feedback = error.error.message;
         console.log({ error });
+        this.loading = false;
       });
   }
 
   onSubmit() {
+    this.loading = true;
+    this.feedback = '';
     this.profileService.saveUser(this.formProfile.value)
       .subscribe(user => {
         this.profileService.saveLocal(this.formProfile.value);
+        this.feedback = 'Usuário salvo com sucesso';
+        this.loading = false;
       }, error => {
-        console.log({ error });
+        this.loading = false;
+        this.feedback = error.error.message;
       });
   }
 
   cancel(event) {
-    event.preventDefault();    
+    event.preventDefault();
     const user = JSON.parse(localStorage.getItem('user'));
     this.formProfile.patchValue(user);
   }

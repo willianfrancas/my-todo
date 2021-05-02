@@ -3,48 +3,57 @@
 </div>
 <hr>
 
-<div class="body-list">
-  <div>
-    <form action="" class="form-group" [formGroup]="formList" (ngSubmit)="onSubmit()">
-      <div class="container">
-        <div class="row add-item p-2">
-          <div class="col-sm-9 p-0">
-            <input type="text" class="form-control form-control-sm" formControlName="description"
-              placeholder="descrição do item">
-          </div>
-          <div class="col-sm-3 p-0">
-            <input type="number" class="form-control form-control-sm" formControlName="price" placeholder="preço"
-              min="0" max="99999999">
-          </div>
+<div class="main">
+  <form class="form-group" [formGroup]="formList" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <div class="row p-2 d-flex">
+        <div class="input--control col-sm-9">
+          <label for="newItem" class="form-label">Novo Item</label>
+          <input type="text" class="form-control form-control-sm" formControlName="description"
+            placeholder="descrição do item" id="newItem">
+          <div class="input__feedback"></div>
         </div>
-      </div>
-      <div class="row p-2">
-        <div class="col">
-          <button type="submit" class="btn btn-primary btn-block" [disabled]="!formList.valid">Salvar</button>
-        </div>
-      </div>
-    </form>
-  </div>
 
-  <div class="container my-list">
+        <div class="input--control col-sm-3">
+          <label for="priceItem" class="form-label">Preço Item</label>
+          <input type="number" class="form-control form-control-sm" formControlName="price" placeholder="preço" min="0"
+            max="99999999" id="priceItem">
+          <div class="input__feedback"></div>
+        </div>
+
+      </div>
+    </div>
+    <div class="row m-2">
+      <div class="col">
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="!formList.valid">Salvar</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="list m-2">
     <div *ngFor="let item of itemList; let i=index;">
-      <div class="row item">
-        <div class="col-sm-2 " (click)="changeStatus(i,done)">
+      <div class="list--item">
+
+        <div class="list--item__check" (click)="changeStatus(i,done)">
           <input type="checkbox" [checked]="item.done" #done>
           <i class="icon-item" [ngClass]="{'fas fa-check-square': done.checked, 'far fa-square': !done.checked}"></i>
         </div>
-        <div class="col-sm-6 ">
+
+        <div class="list--item__description">
           <p class="text text-uppercase">{{item.description}}</p>
         </div>
-        <div class="col-sm-2 ">
+
+        <div class="list--item__price">
           <p class="price">{{item.price}}</p>
         </div>
-        <div class="col-sm-2  actions-items">
+
+        <div class="list--item__action">
           <i class="far fa-edit"></i>
           <i class="far fa-trash-alt"></i>
         </div>
-        <hr>
+
       </div>
+      <hr>
     </div>
   </div>
 
