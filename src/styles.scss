@@ -21,27 +21,17 @@ body {
   padding: 0.1rem 0.5rem;
 }
 
-.has-error,
-.has-feedback {
+.input--control {
+  position: relative;
   input {
-    border: 3px solid red;
-  }
-}
-
-input {
-  &[type="text"],
-  &[type="email"],
-  &[type="number"],
-  &[type="password"] {
     background: #fff;
     border: none;
     border-radius: 8px;
     font-size: 0.9rem;
     font-family: Raleway, sans-serif;
-    height: 72px;
-    margin-bottom: 10px;
+    height: 40px;
     opacity: 1;
-    text-indent: 10px;
+    text-indent: 0.8rem;
     transition: all 0.2s ease-in-out;
     width: 100%;
 
@@ -63,5 +53,51 @@ input {
     &::-ms-input-placeholder {
       color: $placeholder-color;
     }
+  }
+
+  .input__feedback {
+    margin-top: .2rem;
+    height: 1.2rem;
+  }
+  .has-error {
+    margin-left: 0.6rem;
+    color: crimson;
+    span {
+      font-size: 0.7rem;
+    }
+    i {
+      margin-right: 0.4rem;
+    }
+  }
+}
+
+.feedback {
+  display: flex;
+  justify-content: center;
+
+  .feedback-server {
+    width: 100%;
+    color: $bright;
+    border-radius: 8px;
+    padding: 0.4em;
+    position: relative;
+    background-color: $warm;
+    animation: feedback 2s;
+    margin: 1.2rem;
+    .message {
+      text-align: center;
+    }
+  }
+}
+
+@keyframes feedback {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 5;
+  }
+  100% {
+    opacity: 9;
   }
 }
