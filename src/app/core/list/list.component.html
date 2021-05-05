@@ -9,6 +9,7 @@
       <div class="row p-2 d-flex">
         <div class="input--control col-sm-9">
           <label for="newItem" class="form-label">Novo Item</label>
+          <input type="hidden" formControlName="_id">
           <input type="text" class="form-control form-control-sm" formControlName="description"
             placeholder="descrição do item" id="newItem">
           <div class="input__feedback"></div>
@@ -20,7 +21,6 @@
             max="99999999" id="priceItem">
           <div class="input__feedback"></div>
         </div>
-
       </div>
     </div>
     <div class="row m-2">
@@ -39,17 +39,17 @@
           <i class="icon-item" [ngClass]="{'fas fa-check-square': done.checked, 'far fa-square': !done.checked}"></i>
         </div>
 
-        <div class="list--item__description">
-          <p class="text text-uppercase">{{item.description}}</p>
+        <div class="list--item__description"  (click)="changeStatus(i,done)">
+          <p class="text text-uppercase" title="{{item.description}}">{{item.description}}</p>
         </div>
 
-        <div class="list--item__price">
-          <p class="price">{{item.price}}</p>
+        <div class="list--item__price price">
+          <p>R$ {{item.price}}</p>
         </div>
 
         <div class="list--item__action">
-          <i class="far fa-edit"></i>
-          <i class="far fa-trash-alt"></i>
+          <i class="far fa-edit" (click)="editItemList(i)"></i>
+          <i class="far fa-trash-alt" (click)="deleteItemList(i)"></i>
         </div>
 
       </div>
