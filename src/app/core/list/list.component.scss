@@ -10,6 +10,7 @@
   background-color: $secondary;
   border-radius: 8px;
   position: relative;
+  padding: .4rem;
 
   .list {
     border: 2px solid $primary;
@@ -21,13 +22,10 @@
 
     &--item {
       display: grid;
-      grid-template-columns: 1fr 9fr 1fr 1fr;
+      grid-template-columns: 0.5fr 5fr 1fr 1fr;
 
       @media screen and (max-width: 426px) {
-        grid-template-columns: 1fr 3fr 1fr 1fr;
-      }
-      @media screen and (max-width: 375px) {
-        grid-template-columns: 1fr 3fr 1fr 1fr;
+        grid-template-columns: 0.5fr 2fr 1fr 1fr;
       }
 
       &__check {
@@ -38,12 +36,32 @@
       &__action {
         @extend .list--item__check;
         justify-content: space-evenly;
+
+        .fa-edit {
+          color: $warm;
+        }
+        .fa-trash-alt {
+          color: $danger;
+        }
+      }
+      &__description {
+        white-space: nowrap;
+        width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       &__description,
       &__price {
-        color: blue;
+        &.price {
+          display: flex;
+          justify-content: flex-end;
+        }
         p {
           margin-bottom: 0;
+
+          @media screen and (max-width: 768px) {
+            font-size: 0.6rem;
+          }
         }
       }
       i {
