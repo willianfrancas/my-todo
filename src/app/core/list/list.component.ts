@@ -1,6 +1,8 @@
+import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ListModel } from 'src/app/shared/model/list.model';
+import { ListService } from './list.service';
 
 @Component({
   selector: 'app-list',
@@ -9,12 +11,7 @@ import { ListModel } from 'src/app/shared/model/list.model';
 })
 export class ListComponent implements OnInit {
 
-  itemList: ListModel[] = [
-    { _id: 5, done: false, description: "Lorem ipsum dolor", price: "12.00" },
-    { _id: 23, done: true, description: "Sit amet consectetuer", price: "16.00" },
-    { _id: 2, done: false, description: "Elit sed", price: "8.00" },
-    { _id: 22, done: false, description: "Diam nonummy nibh", price: "4.00" },
-  ];
+  itemList: ListModel[] = [];
 
   formList = this.fb.group({
     _id: [''],
@@ -23,26 +20,45 @@ export class ListComponent implements OnInit {
     price: ['', [Validators.required, Validators.minLength(3)]]
   })
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private listService: ListService) { }
 
   ngOnInit(): void {
+    this.listService.loadItems()
+      .subscribe(items => {
+
+        this.itemList = items
+      })
   }
 
   onSubmit() {
     const dataItem = this.formList.value;
     if (!dataItem._id) {
-      this.itemList.push(this.formList.value);
+      // this.itemList.push(this.formList.value);
+      delete dataItem._id;
+      this.listService.saveItem(this.formList.value)
+        .subscribe(item => {
+          console.log(item);
+          this.itemList.push(item);
+        }, (error => {
+          console.warn(error);
+        }));
     } else {
+      this.listService.updateItem(this.formList.value)
+        .subscribe(item => {
+          console.log(item);
+        });
       this.itemList.find(item => {
         if (item._id === dataItem._id) {
           item.description = dataItem.description;
         }
       })
     }
-    this.eraseForm();
+    this.clearForm();
   }
 
-  eraseForm() {
+  clearForm() {
     this.formList.patchValue({
       description: '',
       price: ''
@@ -64,6 +80,7 @@ export class ListComponent implements OnInit {
       }
     })
   }
+
   deleteItemList(i) {
     this.itemList.splice(i, 1);
   }

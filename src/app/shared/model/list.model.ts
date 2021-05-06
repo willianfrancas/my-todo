@@ -1,6 +1,6 @@
 export interface ListModel {
   done: boolean;
   description: string;
-  price: string;
+  price: number;
   _id: number;
 }
