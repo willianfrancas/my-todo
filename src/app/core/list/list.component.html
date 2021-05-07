@@ -10,6 +10,7 @@
         <div class="input--control col-sm-9">
           <label for="newItem" class="form-label">Novo Item</label>
           <input type="hidden" formControlName="_id">
+          <input type="hidden" formControlName="owner">
           <input type="text" class="form-control form-control-sm" formControlName="description"
             placeholder="descrição do item" id="newItem">
           <div class="input__feedback"></div>
@@ -39,7 +40,7 @@
           <i class="icon-item" [ngClass]="{'fas fa-check-square': done.checked, 'far fa-square': !done.checked}"></i>
         </div>
 
-        <div class="list--item__description"  (click)="changeStatus(i,done)">
+        <div class="list--item__description" (click)="changeStatus(i,done)">
           <p class="text text-uppercase" title="{{item.description}}">{{item.description}}</p>
         </div>
 
@@ -54,6 +55,12 @@
 
       </div>
       <hr>
+      
+      <ng-template #noItems>
+        <div>
+          <h1>Nenhum item adicionado</h1>
+        </div>
+      </ng-template>
     </div>
   </div>
 

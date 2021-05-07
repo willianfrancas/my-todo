@@ -17,7 +17,8 @@ export class ListComponent implements OnInit {
     _id: [''],
     done: [false],
     description: ['', [Validators.required, Validators.minLength(3)]],
-    price: ['', [Validators.required, Validators.minLength(3)]]
+    price: ['', [Validators.required, Validators.minLength(3)]],
+    owner: ['',[Validators.required]],
   })
 
   constructor(
@@ -25,11 +26,14 @@ export class ListComponent implements OnInit {
     private listService: ListService) { }
 
   ngOnInit(): void {
-    this.listService.loadItems()
-      .subscribe(items => {
-
-        this.itemList = items
-      })
+    const owner = JSON.parse(localStorage.getItem('user'))._id;
+    this.formList.patchValue({
+      owner: owner
+    })
+    this.listService.loadItems(owner)
+    .subscribe(items => {
+      this.itemList = items
+      });
   }
 
   onSubmit() {
