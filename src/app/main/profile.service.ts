@@ -20,9 +20,7 @@ export class ProfileService {
   }
 
   saveLocal(userProfile: UserModel): void {
-    delete userProfile._id;
     delete userProfile.password;
-
     localStorage.setItem('user', JSON.stringify(userProfile));
   }
 }
