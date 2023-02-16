@@ -32,14 +32,6 @@
           </a>
         </li>
 
-        <li class="nav-item menu logout"
-          *ngIf="(['logout'].includes(item.name) && (authenticated$ | async) && (user$ | async))">
-          <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" (click)="logout()" routerLinkActive="active">
-            <i [ngClass]="item.icon"></i> {{item.name}}
-            <span class="sr-only">(atual)</span>
-          </a>
-        </li>
-
       </div>
     </ul>
   </div>
